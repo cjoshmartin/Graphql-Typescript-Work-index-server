@@ -1,0 +1,1 @@
+{"version":3,"file":"json_api.js","sourceRoot":"","sources":["../../src/datasources/json_api.ts"],"names":[],"mappings":";;;;;;;;;AAAA,6EAA+D;AAC/D,yDAA+C;AAC/C,MAAM,OAAQ,SAAQ,8BAAU;IAG9B;QACE,KAAK,EAAE,CAAC;QACR,IAAI,CAAC,OAAO,GAAG,gBAAgB,CAAC;IAClC,CAAC;CAKF;AAED,kBAAe,OAAO,CAAC"}

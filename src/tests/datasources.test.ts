@@ -32,14 +32,16 @@ describe('GraphQl Datasources', () => {
 
     describe('support retrieving by ', () => {
       describe('departments by ', () => {
-        it('should return an object if ID is in the list', () => {
+          // TODO: Remove this `.only`
+        it.only('should return correct object, if ID is in the list', () => {
           const id = '920a774e-617a-4a5b-82ea-8205c18eef75';
-          const expectDepartmentName = 'Engineering';
+          const expectDepartment = {
+            name: 'Engineering',
+            id: '920a774e-617a-4a5b-82ea-8205c18eef75',
+          };
 
-          const acutualDepartment =  testDataSource.getDepartmentByID(id);
-
-          expect(acutualDepartment).to.be.an.instanceof(Object);
-          expect(acutualDepartment['name']).to.be.eq(expect);
+          const acutualDepartment =  testDataSource.searchDepartment(id);
+          expect(acutualDepartment).to.deep.equal(expectDepartment);
         });
 
           // TODO: Remove this `.only`
@@ -47,13 +49,17 @@ describe('GraphQl Datasources', () => {
           const id = 'fake-id-9999';
           const expectValue = null;
 
-          const acutualDepartment =  testDataSource.getDepartmentByID(id);
+          const acutualDepartment =  testDataSource.searchDepartment(id);
 
           expect(acutualDepartment).to.be.eq(expectValue);
         });
 
-        it('total list', () => {
-          expect(false).to.be.eq(true);
+          // TODO: Remove this `.only`
+        it.only('total list', () => {
+          const expectDepartments = data['departments'];
+
+          const acutualDepartment = testDataSource.searchDepartment();
+          expect(acutualDepartment).to.deep.equal(expectDepartments);
         });
 
         describe('users by', () => {
@@ -65,7 +71,7 @@ describe('GraphQl Datasources', () => {
             const id = 'fake-id-9999';
             const expectValue = null;
 
-            // const acutualDepartment =  testDataSource.getDepartmentByID(id);
+            // const acutualDepartment =  testDataSource.searchDepartment(id);
 
             // expect(acutualDepartment).to.be.eq(expectValue);
           });

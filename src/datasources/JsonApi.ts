@@ -13,16 +13,12 @@ class JsonApi extends DataSource {
 //   initialize(config) {
 //   this.context = config.context;
 // }
-  private searchDepartment(identifier: string, value: string): object {
-    return this.department.find(obj => obj[identifier] === value) || null;
-  }
+  public searchDepartment(value?: string): object[] | object {
+    if (value === undefined) {
+      return this.department;
+    }
 
-  public getDepartmentByID(id: string) : object {
-    return this.searchDepartment('id', id);
-  }
-
-  public getDepartmentByName(name: string) {
-    return { id: '', name: '' };
+    return this.department.find(obj => obj['id'] === value) || null;
   }
 
   // No Reducers are needed because data is already in usable format

@@ -22,33 +22,8 @@ describe('GraphQl Server', () => {
     expect(false).to.be.eq(true);
   });
 
-  it('should support retrieving by ', () => {
-    it('users by', () => {
-      it('id', () => {
-        expect(false).to.be.eq(true);
-      });
-
-      it('total list', () => {
-        expect(false).to.be.eq(true);
-      });
-    });
-
-    it('departments by ', () => {
-      it('id', () => {
-        expect(false).to.be.eq(true);
-      });
-
-      it('total list', () => {
-        expect(false).to.be.eq(true);
-      });
-    });
-  });
-
   it('should support updating user information', () => {
     expect(false).to.be.eq(true);
   });
 
-  it('Given a user, should be possiblle to explor relationships and their hierachy and pull in others from same department', () => {
-    expect(false).to.be.eq(true);
-  });
 });

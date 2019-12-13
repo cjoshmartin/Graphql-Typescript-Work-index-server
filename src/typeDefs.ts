@@ -1,7 +1,10 @@
 const typeDefs = `
 type Query {
     people: [Person]
+    person(id: ID!): Person
+
     departments: [Department]
+    department(id: ID!): Department
 }
 
 type Department {

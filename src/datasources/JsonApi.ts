@@ -13,9 +13,12 @@ class JsonApi extends DataSource {
 //   initialize(config) {
 //   this.context = config.context;
 // }
+  private searchDepartment(identifier: string, value: string): object {
+    return this.department.find(obj => obj[identifier] === value) || null;
+  }
 
   public getDepartmentByID(id: string) : object {
-    return { id: '', name: '' };
+    return this.searchDepartment('id', id);
   }
 
   public getDepartmentByName(name: string) {

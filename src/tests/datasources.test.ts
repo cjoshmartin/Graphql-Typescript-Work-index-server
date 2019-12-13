@@ -33,13 +33,14 @@ describe('GraphQl Datasources', () => {
     describe('support retrieving by ', () => {
       describe('departments by ', () => {
           // TODO: Remove this `.only`
-        it.only('id', () => {
+        it.only('should return an object if id is in the list', () => {
           const id = '920a774e-617a-4a5b-82ea-8205c18eef75';
           const expectDepartmentName = 'Engineering';
 
           const acutualDepartment =  testDataSource.getDepartmentByID(id);
 
-          expect(acutualDepartment['name']).to.be.eq(expectDepartmentName);
+          expect(acutualDepartment).to.be.an.instanceof(Object);
+          expect(acutualDepartment['name']).to.be.eq(expect);
         });
 
         it('total list', () => {

@@ -32,8 +32,7 @@ describe('GraphQl Datasources', () => {
 
     describe('support retrieving by ', () => {
       describe('departments by ', () => {
-          // TODO: Remove this `.only`
-        it.only('should return an object if id is in the list', () => {
+        it('should return an object if ID is in the list', () => {
           const id = '920a774e-617a-4a5b-82ea-8205c18eef75';
           const expectDepartmentName = 'Engineering';
 
@@ -43,6 +42,16 @@ describe('GraphQl Datasources', () => {
           expect(acutualDepartment['name']).to.be.eq(expect);
         });
 
+          // TODO: Remove this `.only`
+        it.only('should return null, if ID is not in the list', () => {
+          const id = 'fake-id-9999';
+          const expectValue = null;
+
+          const acutualDepartment =  testDataSource.getDepartmentByID(id);
+
+          expect(acutualDepartment).to.be.eq(expectValue);
+        });
+
         it('total list', () => {
           expect(false).to.be.eq(true);
         });
@@ -50,6 +59,15 @@ describe('GraphQl Datasources', () => {
         describe('users by', () => {
           it('id', () => {
             expect(false).to.be.eq(true);
+          });
+
+          it.only('should return null, if ID is not in the list', () => {
+            const id = 'fake-id-9999';
+            const expectValue = null;
+
+            // const acutualDepartment =  testDataSource.getDepartmentByID(id);
+
+            // expect(acutualDepartment).to.be.eq(expectValue);
           });
 
           it('total list', () => {

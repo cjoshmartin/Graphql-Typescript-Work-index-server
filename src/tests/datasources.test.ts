@@ -51,11 +51,22 @@ describe('GraphQl Datasources', () => {
 
           expect(acutualDepartment).to.be.eq(expectValue);
         });
+        it('should get a range of departments', () => {
+
+          const ids = ['920a774e-617a-4a5b-82ea-8205c18eef75', 'cfd90465-28fa-4b9a-be3e-ef2517e987e9'];
+          const expectDepartments = [
+              { name: 'Engineering', id: '920a774e-617a-4a5b-82ea-8205c18eef75' },
+              { name: 'Sales', id: 'cfd90465-28fa-4b9a-be3e-ef2517e987e9' },
+          ];
+
+          const acutualDepartment =  testDataSource.searchDepartments(ids);
+          expect(acutualDepartment).to.deep.equal(expectDepartments);
+        });
 
         it('total list', () => {
           const expectDepartments = data['departments'];
 
-          const acutualDepartment = testDataSource.searchDepartment();
+          const acutualDepartment = testDataSource.getAllDepartments();
           expect(acutualDepartment).to.deep.equal(expectDepartments);
         });
 
@@ -71,7 +82,7 @@ describe('GraphQl Datasources', () => {
               managerId: '2798c35b-5b8f-4a5d-9858-0a818d48cbef',
             };
 
-            const acutualPeople = testDataSource.searchPeople(id);
+            const acutualPeople = testDataSource.searchPerson(id);
             expect(acutualPeople).to.deep.equal(expectPeople);
           });
 
@@ -79,15 +90,55 @@ describe('GraphQl Datasources', () => {
             const id = 'fake-id-9999';
             const expectValue = null;
 
-            const acutualPeople =  testDataSource.searchPeople(id);
+            const acutualPeople =  testDataSource.searchPerson(id);
 
             expect(acutualPeople).to.be.eq(expectValue);
           });
 
-          it('total list', () => {
-            const expectPeoples = data['people'];
+          it('should get a range of people', () => {
+            const ids = ['2798c35b-5b8f-4a5d-9858-0a818d48cbef', 'd44390cd-b306-4e11-b7d5-a5e0e6fe1e3d'];
+            const expectPeople = [
+              {
+                id: '2798c35b-5b8f-4a5d-9858-0a818d48cbef',
+                firstName: 'Orval',
+                lastName: 'Hauck',
+                jobTitle: 'CEO',
+                departmentId: '2b9edccb-41fc-4fc5-b832-ac86a034a877',
+              },
+              {
+                id: 'd44390cd-b306-4e11-b7d5-a5e0e6fe1e3d',
+                firstName: 'Asia',
+                lastName: 'Streich',
+                jobTitle: 'Dynamic Branding Orchestrator',
+                departmentId: 'aef293ee-8dcc-4d89-99cf-1b8f61bab07b',
+                managerId: '2798c35b-5b8f-4a5d-9858-0a818d48cbef',
+              },
+            ];
 
-            const acutualPeople = testDataSource.searchPeople();
+            const acutualPeople = testDataSource.searchPeople(ids);
+            expect(acutualPeople).to.deep.equal(expectPeople);
+          });
+
+          it('total list', () => {
+            const expectPeoples = [
+              {
+                id: '2798c35b-5b8f-4a5d-9858-0a818d48cbef',
+                firstName: 'Orval',
+                lastName: 'Hauck',
+                jobTitle: 'CEO',
+                departmentId: '2b9edccb-41fc-4fc5-b832-ac86a034a877',
+              },
+              {
+                id: 'd44390cd-b306-4e11-b7d5-a5e0e6fe1e3d',
+                firstName: 'Asia',
+                lastName: 'Streich',
+                jobTitle: 'Dynamic Branding Orchestrator',
+                departmentId: 'aef293ee-8dcc-4d89-99cf-1b8f61bab07b',
+                managerId: '2798c35b-5b8f-4a5d-9858-0a818d48cbef',
+              },
+            ];
+
+            const acutualPeople = testDataSource.getAllPeople();
             expect(acutualPeople).to.deep.equal(expectPeoples);
           });
         });

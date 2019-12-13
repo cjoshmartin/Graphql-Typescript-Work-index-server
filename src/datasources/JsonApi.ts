@@ -1,12 +1,11 @@
-import * as userDataJsonData from '../../static/UserData.json';
 import { DataSource } from 'apollo-datasource';
 class JsonApi extends DataSource {
-  private department : Array<object>;
-  private people: Array<object>;
+  private department : object[];
+  private people: object[];
 
-  constructor() {
+  constructor(datasource) {
     super();
-    const dataset = (<any>userDataJsonData);
+    const dataset = (<any>datasource);
     this.department = dataset['departments'];
     this.people = dataset['people'];
   }
@@ -15,11 +14,12 @@ class JsonApi extends DataSource {
 //   this.context = config.context;
 // }
 
-  getDepartmentByID(id: String) {
-    return;
+  public getDepartmentByID(id: string) : object {
+    return { id: '', name: '' };
   }
-  getDepartmentByName(name: String) {
-    return;
+
+  public getDepartmentByName(name: string) {
+    return { id: '', name: '' };
   }
 
   // No Reducers are needed because data is already in usable format

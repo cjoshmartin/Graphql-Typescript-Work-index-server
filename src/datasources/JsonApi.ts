@@ -13,12 +13,22 @@ class JsonApi extends DataSource {
 //   initialize(config) {
 //   this.context = config.context;
 // }
-  public searchDepartment(value?: string): object[] | object {
+  private search(section: string, value?: string): object[] | object {
+    const currentObject = this[section];
+
     if (value === undefined) {
-      return this.department;
+      return currentObject;
     }
 
-    return this.department.find(obj => obj['id'] === value) || null;
+    return currentObject.find(obj => obj['id'] === value) || null;
+  }
+
+  public searchDepartment(value?: string): object[] | object  {
+    return this.search('department', value);
+  }
+
+  public searchPeople(value?: string): object[] | object  {
+    return this.search('people', value);
   }
 
   // No Reducers are needed because data is already in usable format

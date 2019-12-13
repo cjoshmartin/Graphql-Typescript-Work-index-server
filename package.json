@@ -8,7 +8,8 @@
     "startwatch":"nodemon dist/index.js",
     "start": "./node_modules/.bin/tsc && node dist/index.js",
     "start:ci": "node dist/index.js",
-    "test": "mocha -r ts-node/register src/**/*.test.ts"
+    "test": "mocha -r ts-node/register src/**/*.test.ts",
+    "test-single": "mocha -r ts-node/register $1"
   },
   "author": "Josh Martin <chajmart@iu.edu>",
   "license": "ISC",

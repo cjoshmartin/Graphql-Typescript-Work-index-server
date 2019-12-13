@@ -32,8 +32,7 @@ describe('GraphQl Datasources', () => {
 
     describe('support retrieving by ', () => {
       describe('departments by ', () => {
-          // TODO: Remove this `.only`
-        it.only('should return correct object, if ID is in the list', () => {
+        it('should return correct object, if ID is in the list', () => {
           const id = '920a774e-617a-4a5b-82ea-8205c18eef75';
           const expectDepartment = {
             name: 'Engineering',
@@ -44,8 +43,7 @@ describe('GraphQl Datasources', () => {
           expect(acutualDepartment).to.deep.equal(expectDepartment);
         });
 
-          // TODO: Remove this `.only`
-        it.only('should return null, if ID is not in the list', () => {
+        it('should return null, if ID is not in the list', () => {
           const id = 'fake-id-9999';
           const expectValue = null;
 
@@ -54,8 +52,7 @@ describe('GraphQl Datasources', () => {
           expect(acutualDepartment).to.be.eq(expectValue);
         });
 
-          // TODO: Remove this `.only`
-        it.only('total list', () => {
+        it('total list', () => {
           const expectDepartments = data['departments'];
 
           const acutualDepartment = testDataSource.searchDepartment();
@@ -63,21 +60,35 @@ describe('GraphQl Datasources', () => {
         });
 
         describe('users by', () => {
-          it('id', () => {
-            expect(false).to.be.eq(true);
+          it('should return correct object, if ID is in the list', () => {
+            const id = 'd44390cd-b306-4e11-b7d5-a5e0e6fe1e3d';
+            const expectPeople = {
+              id: 'd44390cd-b306-4e11-b7d5-a5e0e6fe1e3d',
+              firstName: 'Asia',
+              lastName: 'Streich',
+              jobTitle: 'Dynamic Branding Orchestrator',
+              departmentId: 'aef293ee-8dcc-4d89-99cf-1b8f61bab07b',
+              managerId: '2798c35b-5b8f-4a5d-9858-0a818d48cbef',
+            };
+
+            const acutualPeople = testDataSource.searchPeople(id);
+            expect(acutualPeople).to.deep.equal(expectPeople);
           });
 
-          it.only('should return null, if ID is not in the list', () => {
+          it('should return null, if ID is not in the list', () => {
             const id = 'fake-id-9999';
             const expectValue = null;
 
-            // const acutualDepartment =  testDataSource.searchDepartment(id);
+            const acutualPeople =  testDataSource.searchPeople(id);
 
-            // expect(acutualDepartment).to.be.eq(expectValue);
+            expect(acutualPeople).to.be.eq(expectValue);
           });
 
           it('total list', () => {
-            expect(false).to.be.eq(true);
+            const expectPeoples = data['people'];
+
+            const acutualPeople = testDataSource.searchPeople();
+            expect(acutualPeople).to.deep.equal(expectPeoples);
           });
         });
 

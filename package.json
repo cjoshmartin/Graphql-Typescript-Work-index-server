@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "tswatch": "./node_modules/.bin/tsc -w",
-    "start": "nodemon dist/index.js",
+    "startwatch":"nodemon dist/index.js",
+    "start": "./node_modules/.bin/tsc && node dist/index.js",
     "start:ci": "node dist/index.js",
     "test": "mocha -r ts-node/register src/**/*.test.ts"
   },

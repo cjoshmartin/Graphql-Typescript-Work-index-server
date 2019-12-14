@@ -1,13 +1,14 @@
 const typeDefs = `
 type Query {
-    people: [Person]!
+    # people: [Person]!
+    people(departmentId: String): [Person]!
     person(id: String!): Person
 
     departments: [Department]
     department(departmentId: String!): Department
 
-
 }
+
 
 type Department {
     departmentId: String!,
@@ -23,7 +24,8 @@ type Person {
     jobTitle: String!,
 }
 
-
+# Mutations
+# Todo: Should be able to update user information
 #EOF
 `;
 

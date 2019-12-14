@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import JsonApi from '../datasources/JsonApi';
 
+// TODO: Test reducer
+
 describe('GraphQl Datasources', () => {
 
   describe('JsonAPI', () => {
@@ -28,6 +30,8 @@ describe('GraphQl Datasources', () => {
         },
       ],
     };
+
+    //todo: pass unvalid data
     const testDataSource = new JsonApi(data);
 
     describe('support retrieving by ', () => {

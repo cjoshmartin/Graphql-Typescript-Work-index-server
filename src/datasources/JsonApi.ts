@@ -25,17 +25,30 @@ class JsonApi extends DataSource {
 
   private search(section: string, typeOfId: string = 'id', id?: string): object[] {
 
-  private search(section: string, id?: string): object[] | object {
     const currentObject = this[section];
-    return currentObject.find(obj => obj['id'] === id) || null;
+    const subSetOfObject = currentObject
+                           .filter((obj: object): Boolean => obj[typeOfId] === id) || null;
+
+    return subSetOfObject;
   }
 
-  public searchDepartment(id: string): object  {
-    return this.search('department', id);
+  public searchDepartment(id: string, typeOfId: string = 'id'): object  {
+    if (id === undefined) {
+      return undefined;
+    }
+    const searchOutputArray = this.search('department', typeOfId, id);
+    const result = searchOutputArray[0]; // department in not nullable, everyone is in a department
+    return result;
   }
 
-  public searchPerson(id: string): object  {
-    return this.search('people', id);
+  public searchPerson(id: string, typeOfId: string = 'id'): object  {
+    if (id === undefined) {
+      return undefined;
+    }
+    const searchOutput =  this.search('people', typeOfId, id);
+    const result = searchOutput.length === 1 ? searchOutput[0] : null; // Person is nullabe
+
+    return this.personReducer(result);
   }
 
   public searchDepartments(ids: string[]) : object[] {
@@ -52,8 +65,20 @@ class JsonApi extends DataSource {
     return this.department;
   }
 
-  public getAllPeople(): object[] {
-    return this.people;
+  public getAllPeople(departmentId?: string): object[] {
+
+    const searchByDepartment = (): object[] => {
+      const result = this.search('people', 'departmentId', departmentId);
+      return result;
+    };
+
+    const peopleList: object[] =  departmentId !== undefined
+    ? searchByDepartment()
+    : this.people;
+
+    const result = peopleList.map(person => this.personReducer(person));
+
+    return  result;
   }
 
   private personReducer(person: object): object {

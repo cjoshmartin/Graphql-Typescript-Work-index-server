@@ -34,3 +34,31 @@ departments {
 }
 
 */
+
+/*
+query getPeople {  
+  people(departmentId: "cfd90465-28fa-4b9a-be3e-ef2517e987e9"){
+    firstName
+    lastName
+    department{
+      name
+    }
+  }
+}
+*/
+
+/*
+
+query getPeople {  
+  people(departmentId: "cfd90465-28fa-4b9a-be3e-ef2517e987e9"){
+    firstName
+    lastName
+    department{
+      name
+    }
+    manager {
+      firstName
+    }
+  }
+}
+*/

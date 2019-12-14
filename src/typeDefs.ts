@@ -16,8 +16,8 @@ type Department {
 
 type Person {
     id: String!
-    department(departmentId: String!) : Department,
-    managerId: String!,
+    department: Department!,
+    manager: Person,
     firstName: String!,
     lastName: String!,
     jobTitle: String!,

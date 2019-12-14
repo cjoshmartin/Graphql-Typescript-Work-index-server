@@ -23,9 +23,8 @@ class JsonApi extends DataSource {
     this.people = dataset['people'];
   }
 
-//   initialize(config) {
-//   this.context = config.context;
-// }
+  private search(section: string, typeOfId: string = 'id', id?: string): object[] {
+
   private search(section: string, id?: string): object[] | object {
     const currentObject = this[section];
     return currentObject.find(obj => obj['id'] === id) || null;
@@ -57,7 +56,19 @@ class JsonApi extends DataSource {
     return this.people;
   }
 
-  // No Reducers are needed because data is already in usable format
+  private personReducer(person: object): object {
+    const department = this.searchDepartment(person['departmentId']);
+    const manager = this.searchPerson(person['managerId'], 'id');
+
+    return {
+      department,
+      manager,
+      id: person['id'],
+      firstName: person['firstName'],
+      lastName: person['lastName'],
+      jobTitle: person['jobTitle'],
+    };
+  }
 }
 
 export default JsonApi;

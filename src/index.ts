@@ -10,7 +10,7 @@ const SERVERCONFIG = {
   typeDefs: gql(typeDefs) ,
   resolvers,
   dataSources: () => ({
-    json_api:  new JsonApi(userDataJsonData),
+    JsonApi:  new JsonApi(userDataJsonData),
   }),
 };
 

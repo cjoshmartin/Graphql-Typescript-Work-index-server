@@ -1,20 +1,23 @@
 const typeDefs = `
 type Query {
-    people: [Person]
-    person(id: ID!): Person
+    people: [Person]!
+    person(id: String!): Person
 
     departments: [Department]
-    department(id: ID!): Department
+    department(departmentId: String!): Department
+
+
 }
 
 type Department {
-    departmentId: ID!,
+    departmentId: String!,
     name: String!,
 }
 
 type Person {
-    departmentId: ID!,
-    mangagerId: ID,
+    id: String!
+    department(departmentId: String!) : Department,
+    managerId: String!,
     firstName: String!,
     lastName: String!,
     jobTitle: String!,

@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "ts": "./node_modules/.bin/tsc ",
     "tswatch": "./node_modules/.bin/tsc -w",
     "startwatch":"nodemon dist/index.js",
     "start": "./node_modules/.bin/tsc && node dist/index.js",

@@ -1,10 +1,23 @@
 import { DataSource } from 'apollo-datasource';
+
+function isValid(toCheck: any) : Boolean {
+  return toCheck !== null && toCheck !== undefined;
+}
+
 class JsonApi extends DataSource {
   private department : object[];
   private people: object[];
 
   constructor(datasource) {
     super();
+    const isDataValid : Boolean = isValid(datasource)
+    && isValid(datasource['departments'])
+    && isValid(datasource['people']);
+
+    if (!isDataValid) {
+      throw 'Data supplied to JsonApi Datasource is invalid';
+    }
+
     const dataset = (<any>datasource);
     this.department = dataset['departments'];
     this.people = dataset['people'];

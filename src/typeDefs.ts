@@ -25,7 +25,16 @@ type Person {
 }
 
 # Mutations
-# Todo: Should be able to update user information
+type Mutation {
+    DeletePerson(id: String!): UpdateResponse!
+    DeleteDepartment(departmentId: String!): UpdateResponse!
+}
+
+type UpdateResponse {
+    success: Boolean!
+    message: String
+}
+
 #EOF
 `;
 

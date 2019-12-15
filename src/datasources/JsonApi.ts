@@ -88,9 +88,40 @@ class JsonApi extends DataSource {
 
   private updatePeopleCache(): void {
     this.cachedPeople = this.generatePeopleRecords(this.people);
-    }
+  }
 
-    return  result;
+  private nullifyAField (field: string, value: any) { // currying
+    return (obj: object): object => {
+      if (obj[field] === value) {
+        obj[field] = null;
+      }
+      return obj;
+    };
+  }
+
+  public deleteRecord(section: string, id: string) : Boolean {
+    const currentSection: object[] = this[section];
+    let hasFoundRecord: Boolean = false;
+    const isDeletingAPerson: Boolean = (section === 'people');
+
+    for (let i: number = 0; i < currentSection.length; i += 1) {
+      const currentObj: object = currentSection[i];
+
+      if (currentObj
+        && currentObj[isDeletingAPerson ? 'id' : 'department'] === id) {
+        currentSection.splice(i, 1);
+        hasFoundRecord = true;
+      }
+
+    } // end of forloop
+    if (hasFoundRecord) {
+
+      this.people = this.people.map(
+        this.nullifyAField(isDeletingAPerson ? 'managerId' : 'departmentId', id));
+
+      this.updatePeopleCache();
+    }
+    return hasFoundRecord;
   }
 
   private personReducer(person: object) : object {

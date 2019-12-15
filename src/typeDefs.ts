@@ -26,8 +26,13 @@ type Person {
 
 # Mutations
 type Mutation {
-    DeletePerson(id: String!): UpdateResponse!
-    DeleteDepartment(departmentId: String!): UpdateResponse!
+    DeleteRecord(section: TypeOfRecords!, id: String!): UpdateResponse!
+  #  LinkDepartment:(departmentId: String!, id: String!): UpdateResponse!
+}
+
+enum TypeOfRecords {
+    DEPARTMENT
+    PEOPLE
 }
 
 type UpdateResponse {

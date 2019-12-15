@@ -9,7 +9,7 @@ class JsonApi extends DataSource {
   private people: object[];
   private cachedPeople: object[];
 
-  constructor(datasource) {
+  constructor(datasource: object) {
     super();
     const isDataValid : Boolean = isValid(datasource)
     && isValid(datasource['departments'])
@@ -23,6 +23,8 @@ class JsonApi extends DataSource {
     this.department = dataset['departments'];
     this.people = dataset['people'];
     this.cachedPeople = null;
+
+    this.updatePeopleCache();
   }
 
   private search(section: string, typeOfId: string = 'id', id?: string): object[] {
@@ -66,7 +68,6 @@ class JsonApi extends DataSource {
   public getAllDepartments() : object[] {
     return this.department;
   }
-
   public getAllPeople(departmentId?: string): object[] {
 
     const searchByDepartment = (): object[] => {
@@ -75,22 +76,24 @@ class JsonApi extends DataSource {
     };
 
     const peopleList: object[] =  departmentId !== undefined
-    ? searchByDepartment()
-    : this.people;
+    ? this.generatePeopleRecords(searchByDepartment())
+    : this.cachedPeople;
 
-    let result = null;
+    return  peopleList;
+  }
 
-    if (this.cachedPeople === null) { // TODO: need to do cache invalidation for mutations
-      result = peopleList.map(person => this.personReducer(person));
-      this.cachedPeople = result;
-    } else {
-      result = this.cachedPeople;
+  private generatePeopleRecords(records: object []) {
+    return records.map((person: object): object => this.personReducer(person));
+  }
+
+  private updatePeopleCache(): void {
+    this.cachedPeople = this.generatePeopleRecords(this.people);
     }
 
     return  result;
   }
 
-  private personReducer(person: object): object {
+  private personReducer(person: object) : object {
     if (person === null) {
       return null;
     }

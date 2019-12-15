@@ -99,6 +99,25 @@ class JsonApi extends DataSource {
     };
   }
 
+  public insertRecord(section: string, record: object): Boolean {
+    const currentSection = this[section];
+    const idOfRecord = record['id'];
+    if (!isValid(idOfRecord)) {
+      return false;
+    }
+
+    const searchForRecord = this.search(section, 'id', idOfRecord);
+    const doesRecordExist = searchForRecord.length > 0;
+    if (doesRecordExist) {
+      return false;
+    }
+
+    currentSection.push(record);
+    this.updatePeopleCache();
+
+    return true;
+  }
+
   public deleteRecord(section: string, id: string) : Boolean {
     const currentSection: object[] = this[section];
     let hasFoundRecord: Boolean = false;
@@ -108,7 +127,7 @@ class JsonApi extends DataSource {
       const currentObj: object = currentSection[i];
 
       if (currentObj
-        && currentObj[isDeletingAPerson ? 'id' : 'department'] === id) {
+        && currentObj['id'] === id) {
         currentSection.splice(i, 1);
         hasFoundRecord = true;
       }
@@ -116,7 +135,7 @@ class JsonApi extends DataSource {
     } // end of forloop
     if (hasFoundRecord) {
 
-      this.people = this.people.map(
+      this[section] = this[section].map(
         this.nullifyAField(isDeletingAPerson ? 'managerId' : 'departmentId', id));
 
       this.updatePeopleCache();

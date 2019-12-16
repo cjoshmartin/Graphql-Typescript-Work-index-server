@@ -9,7 +9,7 @@ type Query {
 }
 
 type Department {
-    departmentId: String!,
+    id: String!,
     name: String!,
 }
 

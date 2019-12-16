@@ -1,8 +1,8 @@
 # Graphql-Typescript-Work-index-server
 
-![demo](https://media.giphy.com/media/U2L2hIN4KzKm1SqcLZ/giphy.gif)
-
 This a graphql server written typescript. This program allows a user to query for people, departments and the relationships between the two entities. 
+
+![demo](https://media.giphy.com/media/U2L2hIN4KzKm1SqcLZ/giphy.gif)
 
 [![Build Status](https://travis-ci.org/cjoshmartin/Graphql-Typescript-Work-index-server.svg?branch=master)](https://travis-ci.org/cjoshmartin/Graphql-Typescript-Work-index-server)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)

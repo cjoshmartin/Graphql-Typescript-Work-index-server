@@ -6,11 +6,12 @@
   "scripts": {
     "ts": "./node_modules/.bin/tsc ",
     "tswatch": "./node_modules/.bin/tsc -w",
-    "startwatch":"nodemon dist/index.js",
+    "startwatch": "nodemon dist/index.js",
     "start": "./node_modules/.bin/tsc && node dist/index.js",
     "start:ci": "node dist/index.js",
     "test": "mocha -r ts-node/register src/**/*.test.ts",
-    "test-single": "mocha -r ts-node/register $1"
+    "test-single": "mocha -r ts-node/register $1",
+    "semantic-release": "semantic-release"
   },
   "author": "Josh Martin <chajmart@iu.edu>",
   "license": "ISC",
@@ -34,7 +35,9 @@
     "chai": "^4.2.0",
     "mocha": "^6.2.2",
     "node-fetch": "^2.2.1",
+    "semantic-release": "^15.13.31",
     "supertest": "^4.0.2",
+    "travis-deploy-once": "^5.0.11",
     "ts-node": "^8.5.4"
   }
 }

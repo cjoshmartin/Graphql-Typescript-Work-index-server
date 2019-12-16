@@ -91,7 +91,7 @@ describe('GraphQl Datasources', () => {
             lastName: 'Hauck',
             jobTitle: 'CEO',
             department: { name: 'Management', id: '2b9edccb-41fc-4fc5-b832-ac86a034a877' },
-            manager: undefined,
+            manager: null,
           };
 
           const acutualPeople = testDataSource.searchPerson(id);
@@ -116,7 +116,7 @@ describe('GraphQl Datasources', () => {
               firstName: 'Orval',
               lastName: 'Hauck',
               jobTitle: 'CEO',
-              manager: undefined,
+              manager: null,
               department: { name: 'Management', id: '2b9edccb-41fc-4fc5-b832-ac86a034a877' },
             },
             {
@@ -130,7 +130,7 @@ describe('GraphQl Datasources', () => {
                 firstName: 'Orval',
                 lastName: 'Hauck',
                 jobTitle: 'CEO',
-                manager: undefined,
+                manager: null,
                 department: { name: 'Management', id: '2b9edccb-41fc-4fc5-b832-ac86a034a877' },
               },
             },
@@ -147,7 +147,7 @@ describe('GraphQl Datasources', () => {
               firstName: 'Orval',
               lastName: 'Hauck',
               jobTitle: 'CEO',
-              manager: undefined,
+              manager: null,
               department: { name: 'Management', id: '2b9edccb-41fc-4fc5-b832-ac86a034a877' },
             },
             {
@@ -161,7 +161,7 @@ describe('GraphQl Datasources', () => {
                 firstName: 'Orval',
                 lastName: 'Hauck',
                 jobTitle: 'CEO',
-                manager: undefined,
+                manager: null,
                 department: { name: 'Management', id: '2b9edccb-41fc-4fc5-b832-ac86a034a877' },
               },
             },
@@ -182,7 +182,7 @@ describe('GraphQl Datasources', () => {
                   firstName: 'Orval',
                   lastName: 'Hauck',
                   jobTitle: 'CEO',
-                  manager: undefined,
+                  manager: null,
                   department: { name: 'Management', id: '2b9edccb-41fc-4fc5-b832-ac86a034a877' },
                 },
               },

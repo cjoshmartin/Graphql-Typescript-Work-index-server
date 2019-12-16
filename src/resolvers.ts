@@ -7,26 +7,24 @@ const resolvers  = {
   },
   Mutation: {
     InsertPerson: (_ , { input }, { dataSources }) : object => {
-      const record = input;
       const success: Boolean = dataSources.JsonApi.insertRecord('people', input);
 
       return {
         success,
         message: success
             ? '✅: the selected person has been INSERTED'
-            : `❌: person with the following record of '${record}' Already exist or does not have a valid id ` ,
+            : `❌: person with the following record of '${input}' Already exist or does not have a valid id ` ,
       };
     },
 
     InsertDepartment: (_ , { input }, { dataSources }) : object => {
-      const record = input;
       const success: Boolean = dataSources.JsonApi.insertRecord('department', input);
 
       return {
         success,
         message: success
             ? '✅: the selected Department has been INSERTED'
-            : `❌: Department with the following record of '${record}' Already exist or does not have a valid id ` ,
+            : `❌: Department with the following record of '${input}' Already exist or does not have a valid id ` ,
       };
     },
     DeleteRecord: (_, { section, id }, { dataSources }) : object => {

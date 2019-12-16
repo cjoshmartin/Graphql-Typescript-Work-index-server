@@ -37,8 +37,8 @@ class JsonApi extends DataSource {
   }
 
   public searchDepartment(id: string, typeOfId: string = 'id'): object  {
-    if (id === undefined) {
-      return undefined;
+    if (!isValid(id)) {
+      return null;
     }
     const searchOutputArray = this.search('department', typeOfId, id);
     // department is nullable, someone could be new or benched
@@ -47,8 +47,8 @@ class JsonApi extends DataSource {
   }
 
   public searchPerson(id: string, typeOfId: string = 'id'): object  {
-    if (id === undefined) {
-      return undefined;
+    if (!isValid(id)) {
+      return null;
     }
     const searchOutput =  this.search('people', typeOfId, id);
     const result = searchOutput.length === 1 ? searchOutput[0] : null; // Person is nullabe
@@ -65,7 +65,7 @@ class JsonApi extends DataSource {
   }
 
   public getAllDepartments() : object[] {
-    return this.department;
+    return Object.assign([], this.department);
   }
   public getAllPeople(departmentId?: string): object[] {
 
@@ -76,7 +76,7 @@ class JsonApi extends DataSource {
 
     const peopleList: object[] =  departmentId !== undefined
     ? this.generatePeopleRecords(searchByDepartment())
-    : this.cachedPeople;
+    : Object.assign([], this.cachedPeople);
 
     return  peopleList;
   }
@@ -110,9 +110,11 @@ class JsonApi extends DataSource {
     if (doesRecordExist) {
       return false;
     }
-
     currentSection.push(record);
-    this.updatePeopleCache();
+
+    if (section === 'people') {
+      this.updatePeopleCache();
+    }
 
     return true;
   }

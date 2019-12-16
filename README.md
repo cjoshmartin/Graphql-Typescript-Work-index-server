@@ -31,15 +31,15 @@ The is project has a file `.vscode/launch.json` this contains the configurations
 
 Click the  debugger icon to the right side of the screen.
 
-![debugger](https://www.dropbox.com/s/tgdgywxshzs6eld/Screenshot%202019-12-15%2020.53.33.png?dl=0)
+![debugger](static/images/readme/debugger.png)
 
 Click the configuation dropdown
 
-![Debugger configuations](https://www.dropbox.com/s/7trvs9afrfzb61h/Screenshot%202019-12-15%2020.55.03.png?dl=0)
+![Debugger configuations](static/images/readme/debugger_configuations.png)
 
  Select `Mocha All` to run all the test.
 
-![Choosing A Config](https://www.dropbox.com/s/w3nuiwzxudzorpe/Screenshot%202019-12-15%2020.57.19.png?dl=0)
+![Choosing A Config](static/images/readme/choosing_config.png)
 
 
 Finally, click the play button to run all the test.

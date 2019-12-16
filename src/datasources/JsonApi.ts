@@ -31,7 +31,7 @@ class JsonApi extends DataSource {
 
     const currentObject = this[section];
     const subSetOfObject = currentObject
-                           .filter((obj: object): Boolean => obj[typeOfId] === id) || null;
+                           .filter((obj: object): Boolean => obj[typeOfId] === id);
 
     return subSetOfObject;
   }
@@ -41,7 +41,8 @@ class JsonApi extends DataSource {
       return undefined;
     }
     const searchOutputArray = this.search('department', typeOfId, id);
-    const result = searchOutputArray[0]; // department in not nullable, everyone is in a department
+    // department is nullable, someone could be new or benched
+    const result = searchOutputArray[0] || null;
     return result;
   }
 
@@ -56,13 +57,11 @@ class JsonApi extends DataSource {
   }
 
   public searchDepartments(ids: string[]) : object[] {
-    return ids.map(id => this.searchDepartment(id))
-              .filter(item => !(item === null || item === undefined));
+    return ids.map(id => this.searchDepartment(id));
   }
 
   public searchPeople(ids: string[]): object[] {
-    return ids.map(id => this.searchPerson(id))
-              .filter(item => !(item === null || item === undefined));
+    return ids.map(id => this.searchPerson(id));
   }
 
   public getAllDepartments() : object[] {

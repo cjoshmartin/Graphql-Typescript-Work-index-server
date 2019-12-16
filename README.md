@@ -61,7 +61,7 @@ To run a single test file (it is necessary to supply an absolute path):
 npm run test-single [absolute path to test file]
 ```
 
-### Building and Running Code
+## Building and Running Code
 
 #### VScode
 

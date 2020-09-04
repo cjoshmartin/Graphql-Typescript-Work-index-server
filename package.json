@@ -21,7 +21,7 @@
     "apollo-server": "2.6.1",
     "graphql": "^14.2.1",
     "nodemon": "^1.18.4",
-    "sequelize": "^4.39.0",
+    "sequelize": "^5.15.1",
     "tslint": "^5.20.1",
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.7.3"

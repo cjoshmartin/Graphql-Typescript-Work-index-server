@@ -34,7 +34,7 @@
     "apollo-link": "^1.2.3",
     "apollo-link-http": "^1.5.5",
     "chai": "^4.2.0",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "node-fetch": "^2.2.1",
     "semantic-release": "^15.13.31",
     "supertest": "^4.0.2",
